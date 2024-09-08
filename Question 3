@@ -1,0 +1,41 @@
+from collections import deque
+def find_stepping_numbers(n, m):
+    def is_stepping_number(num):
+        num_str = str(num)
+        for i in range(len(num_str) - 1):
+            if abs(int(num_str[i]) - int(num_str[i + 1])) != 1:
+                return False
+        return True
+
+    # BFS approach to generate stepping numbers
+    result = []
+    queue = deque(range(1, 10))
+
+    while queue:
+        num = queue.popleft()
+
+        # If num is within the given range, add it to the result
+        if n <= num <= m:
+            result.append(num)
+
+        # If num is greater than m, skip further generation
+        if num > m:
+            continue
+
+        # Generate next stepping numbers
+        last_digit = num % 10
+        if last_digit > 0:
+            next_num = num * 10 + (last_digit - 1)
+            if next_num <= m:
+                queue.append(next_num)
+        if last_digit < 9:
+            next_num = num * 10 + (last_digit + 1)
+            if next_num <= m:
+                queue.append(next_num)
+
+    return result
+
+# Example usage:
+n = 100
+m = 400
+print(find_stepping_numbers(n, m))
