@@ -1,0 +1,20 @@
+def get2NonRepeatingNos(nums, n):
+
+    nums.sort();
+    ans=[];
+    i=0;
+    while(i<n-1):
+        if (nums[i] != nums[i + 1]):
+            ans.append(nums[i])
+            i = i + 1
+        else:
+            i=i+2;
+
+    if (len(arr) == 1):
+        ans.append(nums[n - 1]);
+    return ans;
+
+arr = [ 2, 3, 7, 9, 11, 2, 3, 11 ];
+n = len(arr);
+ans = get2NonRepeatingNos(arr, n);
+print(ans[0],ans[1]);
