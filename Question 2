@@ -1,0 +1,21 @@
+def wordBreak(wordList, word):
+
+    if not word:
+        return 1
+
+    wordLen = len(word)
+    for i in range(1, wordLen + 1):
+        prefix = word[:i]
+
+        if prefix in wordList and wordBreak(wordList, word[i:]):
+            return 1
+
+    return 0
+
+wordList = ["mobile", "samsung", "sam", "sung", "man",
+                "mango", "icecream", "and", "go", "i",
+                "like", "ice", "cream"]
+
+result = wordBreak(wordList, "ilikesamsung")
+
+print(result)
