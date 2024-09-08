@@ -1,0 +1,23 @@
+def minimize_price(price: str, k: int) -> str:
+    digits = list(price)
+    stack = []
+
+    # Traverse each digit
+    for digit in digits:
+        while k > 0 and stack and stack[-1] > digit:
+            stack.pop()
+            k -= 1
+        stack.append(digit)
+
+    while k > 0:
+        stack.pop()
+        k -= 1
+
+    # Convert stack to a string and remove leading zeros
+    final_price = ''.join(stack).lstrip('0')
+    return final_price if final_price else '0'
+
+# Example usage
+price = "1432219"
+k = 3
+print(minimize_price(price, k))
